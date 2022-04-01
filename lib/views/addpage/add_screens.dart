@@ -360,6 +360,7 @@ class _AddScreenState extends State<AddScreen> {
       ),
       bottomNavigationBar: InkWell(
         onTap: () {
+
           if (_formkey.currentState!.validate()) {
             context.read<AddtaskBloc>().add(AddingTaskEvent(
                   dateTime: datetimeController.text,

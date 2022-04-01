@@ -1,6 +1,9 @@
 # todoapp
 
-A new Flutter project.
+  TODO Mobile App
+
+A personalized Mobile Application to track day-to-day Activity on your Fingertip. TODO App is based on the Flutter framework, written on clean code architecture using  Bloc State Management with Firebase as Backend. tracking activity of user daily, weekly and monthly, Giving Levels of Priority like High, Low, medium. Analyzing task data using different graphs, Measuring the performance of users based on Task completion and Levels of Priority monthly weekly, and daily
+
 
 ## Getting Started
 

@@ -32,6 +32,8 @@ class StringConstant {
   static const String  aPriority = "Priority";
   static const String  aNotification = "Notification";
   static const String  aAdd = "ADD";
+  static const String  Done = "Done";
+  static const String  Later = "Later";
 
 
 

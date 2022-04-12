@@ -43,9 +43,9 @@ dependencies:
   flutter_bloc: ^8.0.1
   equatable:
   date_time_picker: "^2.1.0"
-  intl:
   datetime_picker_formfield: ^2.0.0
-  flutter_native_splash: ^2.1.2+1
+  flutter_slidable: ^1.2.0
+
 
 
 dev_dependencies:

@@ -234,7 +234,7 @@ class _SignUpState extends State<SignUp> {
                           StringConstant.sLogin,
                           style: TextStyle(
                               fontSize: 16,
-                              color: ColorConstant.mainColor,
+                              color: ColorConstant.mainAppColor,
                               fontFamily: "Roboto"),
                         )),
                   ],

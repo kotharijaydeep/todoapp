@@ -21,7 +21,6 @@ class _AuthViewState extends State<AuthView> {
       create: (_) => AuthBloc()..add(LoginInitial()),
       child: BlocBuilder<AuthBloc, AuthState>(
         builder: (_, state) {
-          print('======>$state');
           if (state is AuthInitial) {
             return SplashScreen();
           } else if (state is AuthLogin) {

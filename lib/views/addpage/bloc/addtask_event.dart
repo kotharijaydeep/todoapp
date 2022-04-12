@@ -4,6 +4,14 @@ part of 'addtask_bloc.dart';
 abstract class AddtaskEvent extends Equatable {
   AddtaskEvent();
 }
+
+class InitialAddTaskEvent extends AddtaskEvent{
+  @override
+  // TODO: implement props
+  List<Object?> get props => throw UnimplementedError();
+
+}
+
 class AddingTaskEvent extends  AddtaskEvent{
 
 
@@ -18,5 +26,38 @@ class AddingTaskEvent extends  AddtaskEvent{
   @override
   // TODO: implement props
   List<Object?> get props => throw UnimplementedError();
+
+}
+
+class clearTextEvent extends AddtaskEvent{
+
+  final TextEditingController nameController;
+  final TextEditingController descriptionController;
+  final TextEditingController categoryController ;
+  final TextEditingController datetimeController;
+
+  clearTextEvent({required this.nameController, required this.descriptionController, required this.categoryController, required this.datetimeController});
+
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => throw UnimplementedError();
+
+
+
+}
+class PriorityColorEvent extends AddtaskEvent{
+
+ final int isClicked;
+
+  PriorityColorEvent({required this.isClicked});
+
+
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => throw UnimplementedError();
+
+
 
 }

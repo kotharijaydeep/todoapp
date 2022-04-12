@@ -6,6 +6,7 @@ import 'package:todoapp/views/homepage/landing_screen.dart';
 import 'package:todoapp/views/loginpage/authview.dart';
 import 'package:todoapp/views/loginpage/login.dart';
 import 'package:todoapp/views/splashscreen/splashscreen.dart';
+import 'package:todoapp/views/tabs/monthlytab/calendar.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,7 +32,9 @@ class MyApp extends StatelessWidget {
         "/":(contetx) => AuthView(),
         "/loginpage":(contetx) => LoginPage(),
         "/landingScreen":(context)  => LandingScreen(),
-        "/addscreen":(context)  => AddScreen()
+        "/addscreen":(context)  => AddScreen(),
+        "/taskview":(context)  => TaskView(),
+        "/calendar":(contetx) => Calendar(),
       },
 
     );

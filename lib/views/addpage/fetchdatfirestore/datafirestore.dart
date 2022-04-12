@@ -1,31 +1,47 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:convert';
+import '../../tabs/dailytab/getmodel/getmodel.dart';
 
 class DatabaseManager {
-  final CollectionReference profileList =
+  final CollectionReference task =
       FirebaseFirestore.instance.collection('addtask');
 
-  createUserData(String taskname, String description, String category, String datetime) async {
-    return await profileList.add({
-      'taskname': taskname,
-      'description': description,
-      'category': category,
-      'datetime':datetime,
-    }).then((value) => print("task add")).catchError((error)=> print("Failed to Add Task"));
+  createUserData(String taskname, String description, String category,
+      String datetime) async {
+    return await task
+        .add({
+          'taskname': taskname,
+          'description': description,
+          'category': category,
+          'datetime': datetime,
+        })
+        .then((value) => print("task add"))
+        .catchError((error) => print("Failed to Add Task"));
   }
 
+/*
+ Stream<List> getUsersList() {
+    return task .snapshots().map((event){
+      return event.docs.map((e) => Task.fromSnapshot(e)).toList();
+    })
+ }
+ }
+*/
+
   getUsersList() async {
-    List itemsList = [];
+    List<Task> itemsList = [];
 
     try {
-      await profileList.get().then((querySnapshot) {
+      await task.get().then((querySnapshot) {
         querySnapshot.docs.forEach((element) {
-          itemsList.add(element.data());
+          itemsList.add(Task.fromJson(element.data()));
+          print(task);
         });
       });
       return itemsList;
     } catch (e) {
       print(e.toString());
-      return null;
+      return [];
     }
   }
 }

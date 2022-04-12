@@ -17,3 +17,15 @@ class AddingtaskState extends AddtaskState{
   List<Object?> get props => throw UnimplementedError();
 
 }
+
+class PriorityState extends AddtaskState{
+
+   final int isClicked;
+
+  PriorityState({required this.isClicked});
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [isClicked];
+
+}

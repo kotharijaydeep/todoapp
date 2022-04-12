@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:todoapp/core/colorconstant.dart';
 import 'package:todoapp/views/tabs/dailytab/daily_tab.dart';
 import 'package:todoapp/views/tabs/monthlytab/monthly_tab.dart';
 import 'package:todoapp/views/tabs/weeklytab/weekly_tab.dart';
 
 import '../../core/stringconstant.dart';
+import '../addpage/add_screens.dart';
 import '../drawer/drawer.dart';
 
 class LandingScreen extends StatefulWidget {
@@ -45,7 +47,8 @@ class _LandingScreenState extends State<LandingScreen> with TickerProviderStateM
                 ),
                 IconButton(
                   onPressed: () {
-                    Navigator.of(context).pushNamed("/addscreen");
+
+                    Navigator.of(context).pushNamed("/taskview");
                   },
                   icon:  Image.asset(
                     "assets/landingscreen/add.png",
@@ -134,7 +137,7 @@ class _LandingScreenState extends State<LandingScreen> with TickerProviderStateM
             ),
           ),
         ),
-        body: TabBarView(
+        body: const TabBarView(
           children: [
             DailyTab(),
             WeeklyTab(),
@@ -142,7 +145,7 @@ class _LandingScreenState extends State<LandingScreen> with TickerProviderStateM
           ],
 
         ),
-        drawer: Drawerr(),
+        drawer: const Drawerr(),
       ),
     );
   }

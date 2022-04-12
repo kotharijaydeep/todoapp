@@ -154,7 +154,7 @@ class _LoginPageState extends State<LoginPage> {
                             Navigator.of(context).push(MaterialPageRoute(builder: (context)=> const SignUp()));
                           },
                             child:
-                            const Text(StringConstant.signUp,style: TextStyle(fontSize: 16,color:  ColorConstant.mainColor,fontFamily: "Roboto"),),
+                            const Text(StringConstant.signUp,style: TextStyle(fontSize: 16,color:  ColorConstant.mainAppColor,fontFamily: "Roboto"),),
                         ),
                       ],
                     ),

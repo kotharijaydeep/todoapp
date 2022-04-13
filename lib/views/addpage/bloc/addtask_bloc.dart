@@ -23,6 +23,10 @@ class AddtaskBloc extends Bloc<AddtaskEvent, AddtaskState> {
         event.description,
         event.category,
         event.dateTime,
+        event.priority,
+        event.important,
+        event.done,
+        event.later
      );
     });
 

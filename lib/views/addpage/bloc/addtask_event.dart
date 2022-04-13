@@ -19,8 +19,12 @@ class AddingTaskEvent extends  AddtaskEvent{
   final String description;
   final String category;
   final String dateTime;
+  dynamic priority;
+  final bool important;
+  final bool done;
+  final  later;
 
-  AddingTaskEvent({required this.taskname, required this.description, required this.category, required this.dateTime, });
+  AddingTaskEvent( {required this.taskname, required this.description, required this.category, required this.dateTime, required this.priority,required this.important,required this.done,required this.later});
 
 
   @override

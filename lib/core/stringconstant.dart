@@ -33,7 +33,10 @@ class StringConstant {
   static const String  aNotification = "Notification";
   static const String  aAdd = "ADD";
   static const String  Done = "Done";
-  static const String  Later = "Later";
+  static const String  later = "Later";
+  static const String  taskDetails = "Task Details";
+  static const String  editTask = "Edit Task";
+  static const String  edit = "EDIT";
 
 
 

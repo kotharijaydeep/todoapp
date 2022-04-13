@@ -9,6 +9,7 @@ import 'package:todoapp/core/colorconstant.dart';
 import 'package:todoapp/core/stringconstant.dart';
 
 
+import '../tabs/dailytab/daily_tab.dart';
 import 'bloc/addtask_bloc.dart';
 import 'fetchdatfirestore/datafirestore.dart';
 
@@ -264,7 +265,7 @@ class _AddScreenState extends State<AddScreen> {
                                 onTap: () {
                                   context.read<AddtaskBloc>().add(
                                     PriorityColorEvent(
-                                        isClicked: 0
+                                        isClicked: 1
                                     ),
                                   );
                                 },
@@ -275,30 +276,8 @@ class _AddScreenState extends State<AddScreen> {
                                     shape: BoxShape.circle,
                                     color:ColorConstant.redColor,
                                     border: Border.all(
-                                        color: isClicked == 0
-                                            ? Colors.red.shade200
-                                            : Colors.white,
-                                        width: 3),
-                                  ),
-                                ),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  context.read<AddtaskBloc>().add(
-                                    PriorityColorEvent(
-                                        isClicked: 1
-                                    ),
-                                  );
-                                },
-                                child: Container(
-                                  height: 22,
-                                  width: 22,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: ColorConstant.orangeColor,
-                                    border: Border.all(
                                         color: isClicked == 1
-                                            ? Colors.orange.shade200
+                                            ? Colors.red.shade200
                                             : Colors.white,
                                         width: 3),
                                   ),
@@ -317,10 +296,10 @@ class _AddScreenState extends State<AddScreen> {
                                   width: 22,
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: ColorConstant.blueColor,
+                                    color: ColorConstant.orangeColor,
                                     border: Border.all(
                                         color: isClicked == 2
-                                            ? Colors.blue.shade200
+                                            ? Colors.orange.shade200
                                             : Colors.white,
                                         width: 3),
                                   ),
@@ -339,9 +318,31 @@ class _AddScreenState extends State<AddScreen> {
                                   width: 22,
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: ColorConstant.greenColor,
+                                    color: ColorConstant.blueColor,
                                     border: Border.all(
                                         color: isClicked == 3
+                                            ? Colors.blue.shade200
+                                            : Colors.white,
+                                        width: 3),
+                                  ),
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  context.read<AddtaskBloc>().add(
+                                    PriorityColorEvent(
+                                        isClicked: 4
+                                    ),
+                                  );
+                                },
+                                child: Container(
+                                  height: 22,
+                                  width: 22,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: ColorConstant.greenColor,
+                                    border: Border.all(
+                                        color: isClicked == 4
                                             ? Colors.green.shade200
                                             : Colors.white,
                                         width: 3),
@@ -392,9 +393,14 @@ class _AddScreenState extends State<AddScreen> {
               description: descriptionController.text,
               category: categoryController.text,
               taskname: nameController.text,
+              priority: isClicked,
+              important: false,
+              done: false,
+              later: false,
+
             ));
             print("Validated");
-
+            Navigator.of(context).pushNamed("/landingScreen");
             context.read<AddtaskBloc>().add(clearTextEvent(
                 nameController: nameController,
                 categoryController: categoryController,

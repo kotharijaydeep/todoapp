@@ -7,13 +7,18 @@ class DatabaseManager {
       FirebaseFirestore.instance.collection('addtask');
 
   createUserData(String taskname, String description, String category,
-      String datetime) async {
+      String datetime,int priority, bool important, bool done,bool later) async {
     return await task
         .add({
           'taskname': taskname,
           'description': description,
           'category': category,
           'datetime': datetime,
+          'priority': priority,
+          'important': important,
+          'done': done,
+          'later': later,
+
         })
         .then((value) => print("task add"))
         .catchError((error) => print("Failed to Add Task"));

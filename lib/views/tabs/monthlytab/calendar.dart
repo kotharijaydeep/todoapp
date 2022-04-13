@@ -22,7 +22,7 @@ class _CalendarState extends State<Calendar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorConstant.ScaffoldColor,
+      backgroundColor: ColorConstant.scaffoldColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(top: 30),

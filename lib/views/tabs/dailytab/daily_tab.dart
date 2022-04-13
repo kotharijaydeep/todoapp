@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:todoapp/core/stringconstant.dart';
 import 'package:todoapp/views/tabs/dailytab/bloc/daily_bloc.dart';
+import 'package:todoapp/views/taskdetails/taskdetails.dart';
 
 import '../../../core/colorconstant.dart';
 import '../../addpage/bloc/addtask_bloc.dart';
@@ -17,6 +18,7 @@ class DailyTab extends StatefulWidget {
 }
 
 class _DailyTabState extends State<DailyTab> {
+  int priority = 1;
   int index = 0;
   DateTime selectedDate = DateTime.now();
   List<String> listOfDays = [
@@ -37,7 +39,7 @@ class _DailyTabState extends State<DailyTab> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: ColorConstant.ScaffoldColor,
+        backgroundColor: ColorConstant.scaffoldColor,
         body: SingleChildScrollView(
           child: BlocProvider(
             create: (_) => DailyBloc()..add(GetDataEvent()),
@@ -155,69 +157,89 @@ class _DailyTabState extends State<DailyTab> {
                             physics: NeverScrollableScrollPhysics(),
                             itemCount: state.userprofileList.length,
                             itemBuilder: (BuildContext context, index) {
-                              return Slidable(
-                                child: Card(
-                                  elevation: 3,
-                                  child: ListTile(
-                                    leading: Text(
-                                        state.userprofileList[index].datetime),
-                                    title: Text(
-                                        state.userprofileList[index].taskname),
-                                    subtitle: Text(state
-                                        .userprofileList[index].description),
-                                    trailing: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        IconButton(
-                                          onPressed: () {
-                                            context.read<AddtaskBloc>().add(
-                                              PriorityColorEvent(
-                                                  isClicked:0
-                                              ),
-                                            );
-                                          },
-                                          icon: Icon(
-                                            Icons.star_outline,
-                                            size: 30,
+                              return GestureDetector(
+                                onTap: (){
+                                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=> TaskDetails(state.userprofileList[index])));
+                                },
+                                child: Slidable(
+                                  child: Card(
+                                    elevation: 3,
+                                    child: ListTile(
+                                      leading: Text(
+                                          state.userprofileList[index].datetime),
+                                      title: Text(
+                                          state.userprofileList[index].taskname),
+                                      subtitle: Text(state
+                                          .userprofileList[index].description),
+                                      trailing: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          IconButton(
+                                            onPressed: () {
+
+                                            },
+                                            icon: Icon(
+                                              Icons.star_outline,
+                                              size: 30,
+                                            ),
                                           ),
-                                        ),
-                                        Container(
-                                          height: 22,
-                                          width: 22,
-                                          decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: ColorConstant.redColor),
-                                        ),
-                                      ],
+                                          Container(
+                                            height: 22,
+                                            width: 22,
+                                            decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: state
+                                                            .userprofileList[
+                                                                index]
+                                                            .priority ==
+                                                        1
+                                                    ? ColorConstant.redColor
+                                                    : state.userprofileList[index]
+                                                                .priority ==
+                                                            2
+                                                        ? ColorConstant
+                                                            .orangeColor
+                                                        : state
+                                                                    .userprofileList[
+                                                                        index]
+                                                                    .priority ==
+                                                                3
+                                                            ? ColorConstant
+                                                                .blueColor
+                                                            : ColorConstant
+                                                                .greenColor),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ),
-                                startActionPane: ActionPane(
-                                  motion: ScrollMotion(),
-                                  children: [
-                                    SlidableAction(
-                                      backgroundColor: Color(0xFFFE4A49),
-                                      foregroundColor: Colors.white,
-                                      icon: Icons.cloud_done,
-                                      label: StringConstant.dDone,
-                                      onPressed: (BuildContext context) {},
-                                    ),
-                                  ],
-                                ),
-                                endActionPane: ActionPane(
-                                  motion: ScrollMotion(),
-                                  // dismissible: DismissiblePane(onDismissed: () {}),
-                                  children: [
-                                    SlidableAction(
-                                      // An action can be bigger than the others.
-                                      flex: 2,
-                                      backgroundColor: Color(0xFF7BC043),
-                                      foregroundColor: Colors.white,
-                                      icon: Icons.watch_later_outlined,
-                                      label: StringConstant.Later,
-                                      onPressed: (BuildContext context) {},
-                                    ),
-                                  ],
+                                  startActionPane: ActionPane(
+                                    motion: ScrollMotion(),
+                                    children: [
+                                      SlidableAction(
+                                        backgroundColor: ColorConstant.greenColor,
+                                        foregroundColor: ColorConstant.whiteColor,
+                                        icon: Icons.cloud_done,
+                                        label: StringConstant.dDone,
+                                        onPressed: (BuildContext context) {},
+                                      ),
+                                    ],
+                                  ),
+                                  endActionPane: ActionPane(
+                                    motion: ScrollMotion(),
+                                    // dismissible: DismissiblePane(onDismissed: () {}),
+                                    children: [
+                                      SlidableAction(
+                                        // An action can be bigger than the others.
+                                        flex: 2,
+                                        backgroundColor: ColorConstant.redColor,
+                                        foregroundColor: ColorConstant.whiteColor,
+                                        icon: Icons.watch_later_outlined,
+                                        label: StringConstant.later,
+                                        onPressed: (BuildContext context) {},
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               );
                             },
@@ -226,7 +248,48 @@ class _DailyTabState extends State<DailyTab> {
                       ],
                     );
                   } else {
-                    return Container();
+                    return SingleChildScrollView(
+                      child: Center(
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 80),
+                              child: Image.asset(
+                                  "assets/landingscreen/AlldoneLogo.png",
+                                  width: 200),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            const Text(
+                              StringConstant.lAllDoneForNow,
+                              style: TextStyle(
+                                  fontSize: 21,
+                                  color: Colors.deepPurple,
+                                  fontWeight: FontWeight.w900),
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            const Text(
+                              StringConstant.lNextTask,
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            const Text(StringConstant.lTomorrow355pm),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            const Text(
+                              StringConstant.lTimeForaBreak,
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
                   }
                 },
                 listener: (BuildContext context, Object? state) {}),
@@ -234,31 +297,3 @@ class _DailyTabState extends State<DailyTab> {
         ));
   }
 }
-// SingleChildScrollView(
-// child: Center(
-// child: Column(
-// children: [
-// Padding(
-// padding: const EdgeInsets.only(top: 80),
-// child: Image.asset("assets/landingscreen/AlldoneLogo.png",width: 200),
-// ),
-// const SizedBox(
-// height: 10,
-// ),
-// const Text(StringConstant.lAllDoneForNow,style: TextStyle(fontSize: 21,color: Colors.deepPurple,fontWeight: FontWeight.w900),),
-// const SizedBox(
-// height: 20,
-// ),
-// const Text(StringConstant.lNextTask,),
-// const SizedBox(
-// height: 5,
-// ),
-// const Text(StringConstant.lTomorrow355pm),
-// const SizedBox(
-// height: 10,
-// ),
-// const Text(StringConstant.lTimeForaBreak,style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
-// ],
-// ),
-// ),
-// )

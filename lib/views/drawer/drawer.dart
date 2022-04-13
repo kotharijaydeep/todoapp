@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:todoapp/views/addpage/add_screens.dart';
 
 import '../../core/stringconstant.dart';
 import '../loginpage/auth/authentication.dart';
@@ -48,14 +49,19 @@ class _DrawerrState extends State<Drawerr> {
             padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
             child: Column(
              children: [
-               Row(
-                 children: [
-                   Image.asset("assets/landingscreen/add.png",width: 30,),
-                   const SizedBox(
-                     width: 20,
-                   ),
-                   const Text(StringConstant.dNewTask,style: TextStyle(fontSize: 18),)
-                 ],
+               InkWell(
+                 onTap: (){
+                   Navigator.of(context).pushNamed('/taskview');
+                 },
+                 child: Row(
+                   children: [
+                     Image.asset("assets/landingscreen/add.png",width: 30,),
+                     const SizedBox(
+                       width: 20,
+                     ),
+                     const Text(StringConstant.dNewTask,style: TextStyle(fontSize: 18),)
+                   ],
+                 ),
                ),
                const SizedBox(
                  height: 20,

@@ -1,9 +1,11 @@
 
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
+
 class ColorConstant {
-  static const  Color  mainAppColor = Color(0xeF7646FF);
-  static const  Color  ScaffoldColor = Color(0xFFEFEFEF);
+  static const  Color  mainAppColor = Colors.deepPurple;
+  static const  Color  scaffoldColor = Color(0xFFEFEFEF);
   static const  Color  whiteColor = Color(0xFFFFFFFF);
   static const  Color  blackColor = Color(0xFF000000);
   static const  Color  greenColor = Color(0xFF4CCB41);

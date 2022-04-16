@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../monthlytab/calendar.dart';
+import 'calendar.dart';
 
 
 class WeeklyTab extends StatefulWidget {
@@ -15,7 +15,7 @@ class _WeeklyTabState extends State<WeeklyTab> {
   Widget build(BuildContext context) {
     return Column(
       children: const [
-        Expanded(child: Calendar()),
+        Expanded(child: Calenderr()),
       ],
     );
   }

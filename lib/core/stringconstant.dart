@@ -37,6 +37,9 @@ class StringConstant {
   static const String  taskDetails = "Task Details";
   static const String  editTask = "Edit Task";
   static const String  edit = "EDIT";
+  static const String  important = "Important";
+  static const String  nicetohave = "Nice to Have";
+  static const String  donetask = "Done Task";
 
 
 

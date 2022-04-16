@@ -7,7 +7,7 @@ import 'package:todoapp/views/loginpage/authview.dart';
 import 'package:todoapp/views/loginpage/login.dart';
 import 'package:todoapp/views/splashscreen/splashscreen.dart';
 import 'package:todoapp/views/tabs/dailytab/daily_tab.dart';
-import 'package:todoapp/views/tabs/monthlytab/calendar.dart';
+import 'package:todoapp/views/tabs/weeklytab/calendar.dart';
 import 'package:todoapp/views/taskdetails/taskdetails.dart';
 
 void main() async{
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         "/landingScreen":(context)  => LandingScreen(),
         "/addscreen":(context)  => AddScreen(),
         "/taskview":(context)  => TaskView(),
-        "/calendar":(contetx) => Calendar(),
+        "/calendar":(contetx) => Calenderr(),
         "/dailytab":(contetx) => DailyTab(),
 
       },

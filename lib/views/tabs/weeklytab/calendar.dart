@@ -3,14 +3,14 @@ import 'package:todoapp/core/colorconstant.dart';
 
 import '../../../core/colorconstant.dart';
 
-class Calendar extends StatefulWidget {
-  const Calendar({Key? key}) : super(key: key);
+class Calenderr extends StatefulWidget {
+  const Calenderr({Key? key, }) : super(key: key);
 
   @override
-  _CalendarState createState() => _CalendarState();
+  _CalenderrState createState() => _CalenderrState();
 }
 
-class _CalendarState extends State<Calendar> {
+class _CalenderrState extends State<Calenderr> {
   DateTime selectedDate = DateTime.now(); // TO tracking date
 
   int currentDateSelectedIndex = 0; //For Horizontal Date

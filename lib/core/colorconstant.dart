@@ -17,5 +17,5 @@ class ColorConstant {
   static const  Color  calendartext1Color = Color(0xFFE0E3E5);
   static const  Color  transparentColor = Color(0xFF0000ffff);
   static const  Color  greyColor = Color(0xFF515D68);
-
+  static const  Color  iconColor = Color(0xFF707070);
 }

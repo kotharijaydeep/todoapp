@@ -18,6 +18,7 @@ class DailyTab extends StatefulWidget {
 }
 
 class _DailyTabState extends State<DailyTab> {
+  bool important = true;
   int priority = 1;
   int index = 0;
   DateTime selectedDate = DateTime.now();
@@ -179,7 +180,8 @@ class _DailyTabState extends State<DailyTab> {
 
                                             },
                                             icon: Icon(
-                                              Icons.star_outline,
+                                              Icons.star,
+                                              color: state.userprofileList[index].important == true?ColorConstant.yellowColor:ColorConstant.greyColor,
                                               size: 30,
                                             ),
                                           ),

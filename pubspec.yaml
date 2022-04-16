@@ -45,6 +45,9 @@ dependencies:
   date_time_picker: "^2.1.0"
   datetime_picker_formfield: ^2.0.0
   flutter_slidable: ^1.2.0
+  uuid: ^3.0.6
+  favorite_button: ^0.0.4
+  flutter_clean_calendar: ^1.1.0
 
 
 

@@ -12,7 +12,6 @@ String taskToJson(List<Task> data) =>
 
 class Task {
   String datetime;
-
   String description;
   String taskname;
   String category;

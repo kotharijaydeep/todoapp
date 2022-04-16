@@ -14,13 +14,20 @@ class GetDataInitial extends DailyEvent{
 
 class GetDataEvent  extends DailyEvent{
 
-  List<Task> userprofileList = [];
-
-
-
 
   @override
   // TODO: implement props
   List<Object?> get props => throw UnimplementedError();
+
+}
+
+class ImportantEvent extends DailyEvent{
+
+  List<Task> userprofileList = [];
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => throw UnimplementedError();
+
 
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todoapp/views/addpage/add_screens.dart';
+import 'package:todoapp/views/importanttask/important_task.dart';
 
 import '../../core/stringconstant.dart';
 import '../loginpage/auth/authentication.dart';
@@ -51,7 +52,7 @@ class _DrawerrState extends State<Drawerr> {
              children: [
                InkWell(
                  onTap: (){
-                   Navigator.of(context).pushNamed('/taskview');
+                   Navigator.push(context, MaterialPageRoute(builder: (context)=> TaskView()));
                  },
                  child: Row(
                    children: [
@@ -64,20 +65,25 @@ class _DrawerrState extends State<Drawerr> {
                  ),
                ),
                const SizedBox(
-                 height: 20,
+                 height: 25,
                ),
-               Row(
-                 children:  [
-                   Image.asset("assets/landingscreen/star.png",width: 30,color: Colors.black,),
-                   const SizedBox(
-                     width: 20,
-                   ),
-                   const Text(StringConstant.dImportant,style: TextStyle(fontSize: 18),),
+               InkWell(
+                 onTap: (){
+                   Navigator.push(context, MaterialPageRoute(builder: (context)=> Important()));
+                 },
+                 child: Row(
+                   children:  [
+                     Image.asset("assets/landingscreen/star.png",width: 30,color: Colors.black,),
+                     const SizedBox(
+                       width: 20,
+                     ),
+                     const Text(StringConstant.dImportant,style: TextStyle(fontSize: 18),),
 
-                 ],
+                   ],
+                 ),
                ),
                const SizedBox(
-                 height: 20,
+                 height: 25,
                ),
                Row(
                  children:  [
@@ -90,7 +96,7 @@ class _DrawerrState extends State<Drawerr> {
                  ],
                ),
                const SizedBox(
-                 height: 20,
+                 height: 25,
                ),
                Row(
                  children:  [
@@ -103,33 +109,7 @@ class _DrawerrState extends State<Drawerr> {
                  ],
                ),
                const SizedBox(
-                 height: 20,
-               ),
-               Row(
-                 children:  [
-                   Image.asset("assets/landingscreen/category.png",width: 30,color: Colors.black,),
-                   const SizedBox(
-                     width: 20,
-                   ),
-                   const Text(StringConstant.dCategory,style: TextStyle(fontSize: 18),),
-
-                 ],
-               ),
-               const SizedBox(
-                 height: 20,
-               ),
-               Row(
-                 children:  [
-                   Image.asset("assets/landingscreen/setting.png",width: 30,color: Colors.black,),
-                   const SizedBox(
-                     width: 20,
-                   ),
-                   const Text(StringConstant.dSetting,style: TextStyle(fontSize: 18),),
-
-                 ],
-               ),
-               const SizedBox(
-                 height: 20,
+                 height: 25,
                ),
                InkWell(
                  onTap: ()async{

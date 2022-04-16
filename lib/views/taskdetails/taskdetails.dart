@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:todoapp/core/colorconstant.dart';
 import 'package:todoapp/core/stringconstant.dart';
+import 'package:todoapp/views/donetask/done_task.dart';
 
 import '../edittask/edittask.dart';
 import '../tabs/dailytab/getmodel/getmodel.dart';
@@ -16,13 +17,6 @@ class TaskDetails extends StatefulWidget {
 }
 
 class _TaskDetailsState extends State<TaskDetails> {
-  int _selectedIndex = 0;
-
-  void _onTap(int index) {
-    _selectedIndex = index;
-    setState(() {});
-  }
-
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -52,35 +46,6 @@ class _TaskDetailsState extends State<TaskDetails> {
                   ],
                 ),
               ],
-              bottom: PreferredSize(
-                preferredSize: const Size.fromHeight(85),
-                child: Container(
-                  height: 65,
-                  child: Column(
-                    children: [
-                      Container(
-                        height: 50,
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 20),
-                          child: TextFormField(
-                            decoration: InputDecoration(
-                                hintText: StringConstant.lSearchTask,
-                                hintStyle: const TextStyle(fontSize: 18),
-                                labelStyle: const TextStyle(fontSize: 18),
-                                suffixIcon: Image.asset(
-                                  "assets/landingscreen/search.png",
-                                  width: 70,
-                                ),
-                                border: const OutlineInputBorder(),
-                                fillColor: Colors.white,
-                                filled: true),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
             ),
             body: Stack(
               children: [
@@ -92,54 +57,84 @@ class _TaskDetailsState extends State<TaskDetails> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   child: Container(
-                    height: 250,
-                    width: 390,
+                    // height: 250,
+                    width: MediaQuery.of(context).size.width,
                     color: ColorConstant.whiteColor,
-                    child: Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            widget.task.taskname,
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            widget.task.datetime,
-                            style: TextStyle(
-                                fontSize: 16, color: ColorConstant.greyColor),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            widget.task.description,
-                            style: TextStyle(
-                                fontSize: 18, color: ColorConstant.greyColor),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          RichText(
-                              text: TextSpan(
-                                  text: "Category:",
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            ClipPath(
+                              clipper: MyCustomClipper(),
+                              child: Container(
+                                height: 25,
+                                width: 180,
+                                color: Colors.blue,
+                                child: Center(
+                                    child: Text(
+                                  StringConstant.nicetohave,
                                   style: TextStyle(
-                                      fontSize: 18,
-                                      color: ColorConstant.blackColor),
-                                  children: [
-                                TextSpan(
-                                    text: " ${widget.task.category}",
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        color: ColorConstant.greyColor))
-                              ]))
-                        ],
-                      ),
+                                      color: ColorConstant.whiteColor,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
+                                )),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 40),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                widget.task.taskname,
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                widget.task.datetime,
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    color: ColorConstant.greyColor),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                widget.task.description,
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: ColorConstant.greyColor),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              RichText(
+                                  text: TextSpan(
+                                      text: "Category:",
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          color: ColorConstant.blackColor),
+                                      children: [
+                                    TextSpan(
+                                        text: " ${widget.task.category}",
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            color: ColorConstant.greyColor))
+                                  ]))
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -152,27 +147,57 @@ class _TaskDetailsState extends State<TaskDetails> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     IconButton(
-                        onPressed: () {}, icon: Icon(Icons.delete_outline)),
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.delete_outline,
+                          color: ColorConstant.iconColor,
+                        )),
+                    IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const EditTask()),
+                        );
+                      },
+                      icon: Icon(Icons.edit, color: ColorConstant.iconColor),
+                    ),
+                    IconButton(
+                        onPressed: () {},
+                        icon: Icon(Icons.watch_later_outlined,
+                            color: ColorConstant.iconColor)),
                     IconButton(
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => const EditTask()),
+                            MaterialPageRoute(
+                                builder: (context) => const DoneTask()),
                           );
                         },
-                        icon: Icon(Icons.edit
-                        ),
-                    ),
-                    IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.watch_later_outlined)),
-                    IconButton(
-                        onPressed: () {}, icon: Icon(Icons.check_box_outlined)),
+                        icon: Icon(Icons.check_box_outlined,
+                            color: ColorConstant.iconColor)),
                   ],
                 ),
               ),
             )),
       ],
     );
+  }
+}
+
+class MyCustomClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    Path path = Path();
+    path.lineTo(size.width / 6, size.height);
+    path.lineTo(size.width, size.height);
+    path.lineTo(size.width, 0);
+
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper oldClipper) {
+    return false;
   }
 }

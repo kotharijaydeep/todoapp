@@ -28,5 +28,18 @@ class DailyBloc extends Bloc<DailyEvent, DailyState> {
         emit(GetDataState(userprofileList:result));
       }
     });
+
+    on<ImportantEvent>((event, emit)async {
+     dynamic res = await DatabaseManager().importantList();
+     print(res.toString());
+      if(res==null){
+        print("unable to retive");
+      }else{
+        emit(ImportantState(userprofileList: res));
+      }
+
+
+    });
+
   }
 }

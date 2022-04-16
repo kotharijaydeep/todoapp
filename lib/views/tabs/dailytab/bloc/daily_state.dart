@@ -23,3 +23,14 @@ final List<Task> userprofileList;
 
 
 }
+class ImportantState extends DailyState{
+
+  final List<Task> userprofileList;
+
+  ImportantState({required this.userprofileList});
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => throw UnimplementedError();
+
+}
